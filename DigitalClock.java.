@@ -1,0 +1,44 @@
+// File Name: DigitalClock.java
+
+import javax.swing.*;
+import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DigitalClock {
+
+    public static void main(String[] args) {
+        // Create the main window (the frame)
+        JFrame frame = new JFrame("Varsha's Digital Clock");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 200);
+        frame.setLayout(new BorderLayout());
+
+        // Create a label to display the time
+        JLabel timeLabel = new JLabel();
+        timeLabel.setFont(new Font("Arial", Font.BOLD, 60));
+        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timeLabel.setForeground(Color.GREEN);
+        timeLabel.setBackground(Color.BLACK);
+        timeLabel.setOpaque(true);
+
+        // Add the label to the frame
+        frame.add(timeLabel, BorderLayout.CENTER);
+
+        // Make the window visible
+        frame.setVisible(true);
+
+        // This is the "ticking" part of the clock
+        Timer timer = new Timer(1000, e -> {
+            // Get the current time and format it
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+            String time = sdf.format(new Date());
+            
+            // Update the label's text with the new time
+            timeLabel.setText(time);
+        });
+        
+        // Start the timer!
+        timer.start();
+    }
+}
